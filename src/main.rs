@@ -37,7 +37,7 @@ fn main() {
     let vacation_days_total: f64 = days as f64*0.0411;
     let vacation_days_available: f64 = vacation_days_total - employ.dias_utilizados as f64;
 
-    println!("Días de vacaciones disponibles a la fecha {}: {}", current_date, vacation_days_available);
+    println!("Días de vacaciones de {} disponibles a la fecha {}: {}", employ.nombre, current_date, vacation_days_available);
 
     write_employ(filename, &employ)
 }
