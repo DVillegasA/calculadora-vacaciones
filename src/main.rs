@@ -60,6 +60,8 @@ fn calculate_extra_days(current_days: f64, filename: &str, employ: &mut Empleado
         's' => {
             employ.dias_utilizados += vacation_days;
             write_employ(filename, employ);
+            println!("Archivo {filename} modificado correctamente!");
+            return;
         },
         'n' => return,
         _ => println!("Valor entregado es invalido, favor ingresar S para si o N para no."),
