@@ -3,7 +3,7 @@ use std::io::{BufWriter, Write, Read};
 use serde::{Deserialize, Serialize};
 use chrono::{Utc, NaiveDate};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Deserialize, Serialize)]
 struct Empleado {
     nombre: String,
     fecha_ingreso: NaiveDate,
@@ -30,8 +30,6 @@ fn write_employ(path: &str, employ: &Empleado) {
 fn main() {
     let filename = "docs/data.json";
     let employ: Empleado = read_employ(filename);
-
-    println!("{:?}", employ);
 
     let current_date = Utc::now().naive_utc().date();
     let diff = current_date.signed_duration_since(employ.fecha_ingreso);
