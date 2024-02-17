@@ -4,6 +4,8 @@ use std::io::{BufWriter, Write, Read};
 use serde::{Deserialize, Serialize};
 use chrono::{Utc, NaiveDate};
 
+static VACATION_FACTOR: f64 = 15.0/365.0;
+
 #[derive(Deserialize, Serialize)]
 struct Empleado {
     nombre: String,
@@ -75,7 +77,7 @@ fn main() {
     let current_date = Utc::now().naive_utc().date();
     let diff = current_date.signed_duration_since(employ.fecha_ingreso);
     let days = diff.num_days();
-    let vacation_days_total: f64 = days as f64*0.0411;
+    let vacation_days_total: f64 = days as f64*VACATION_FACTOR;
     let vacation_days_available: f64 = vacation_days_total - employ.dias_utilizados as f64;
 
     println!("Días de vacaciones de {} disponibles a la fecha {}: {:.1}", employ.nombre, current_date, vacation_days_available);
