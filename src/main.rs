@@ -100,5 +100,4 @@ fn main() {
         _ => println!("Valor entregado es invalido, favor ingresar S para si o N para no."),
     }
 
-    write_employ(filename, &employ)
 }
