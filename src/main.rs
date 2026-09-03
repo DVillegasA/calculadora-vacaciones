@@ -1,3 +1,4 @@
+use std::env;
 use std::fs::File;
 use std::io;
 use std::io::{BufWriter, Write, Read};
@@ -71,7 +72,14 @@ fn calculate_extra_days(current_days: f64, filename: &str, employ: &mut Empleado
 }
 
 fn main() {
-    let filename = "docs/data.json";
+    let args: Vec<String> = env::args().collect();
+    
+    if args.len() < 2 {
+        eprintln!("Uso: {} <archivo_empleado>", args[0]);
+        std::process::exit(1);
+    }
+    
+    let filename = &args[1];
     let mut employ: Empleado = read_employ(filename);
 
     let current_date = Utc::now().naive_utc().date();
